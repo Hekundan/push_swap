@@ -6,11 +6,12 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:24:56 by johartma          #+#    #+#             */
-/*   Updated: 2025/04/16 13:28:32 by johartma         ###   ########.fr       */
+/*   Updated: 2025/04/23 19:25:31 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 int	main(int argc, char **argv)
 {
