@@ -6,7 +6,7 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:21:32 by johartma          #+#    #+#             */
-/*   Updated: 2025/04/24 13:14:36 by johartma         ###   ########.fr       */
+/*   Updated: 2025/04/25 11:29:28 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int				rrr(char *operations, t_stack *stack_a, t_stack *stack_b);
 int				add_to_operations(char *operations, char *to_add);
 void			stack_add_element(t_stack_element *element, t_stack *stack);
 t_stack_element	*stack_fetch(t_stack *stack);
-
+void			burnit(int *n, char *s, t_stack *a, t_stack *b);
+int				build_stacks(t_stack *a, t_stack *b, int *numbers, int length);
 
 
 #endif

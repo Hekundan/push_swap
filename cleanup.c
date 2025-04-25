@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 13:31:08 by johartma          #+#    #+#             */
-/*   Updated: 2025/04/25 11:24:55 by johartma         ###   ########.fr       */
+/*   Created: 2025/04/25 10:49:32 by johartma          #+#    #+#             */
+/*   Updated: 2025/04/25 10:50:25 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 
-void	stack_add_element(t_stack_element *element, t_stack *stack)
+static void	clear_stack(t_stack *s)
 {
-	if (!stack->head)
+	int				count;
+
+	if (s)
 	{
-		element->next = element;
-		element->former = element;
+		while (s->head)
+			stack_rem_elmnt(s);
 	}
-	else
-	{
-		stack->head->former->next = element;
-		element->next = stack->head;
-		element->former = stack->head->former;
-		stack->head->former = element;
-	}
-	stack->head = element;
-	stack->stack_length++;
+	free(s);
 }
 
-t_stack_element	*stack_fetch(t_stack *stack)
+static void	*stack_rem_elmnt(t_stack *stack)
 {
 	t_stack_element	*to_fetch;
 
@@ -47,7 +41,18 @@ t_stack_element	*stack_fetch(t_stack *stack)
 		stack->head = stack->head->next;
 	}
 	stack->stack_length--;
-	return (to_fetch);
+	free (to_fetch);
 }
 
+void	burnit(int *n, char *s, t_stack *a, t_stack *b)
+{
+	if (a)
+		clear_stack(a);
+	if (b)
+		clear_stack(b);
+	if (s)
+		free(s);
+	if (n)
+		free(n);
+}
 
