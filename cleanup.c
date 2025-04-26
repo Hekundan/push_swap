@@ -6,33 +6,22 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 10:49:32 by johartma          #+#    #+#             */
-/*   Updated: 2025/04/25 13:36:04 by johartma         ###   ########.fr       */
+/*   Updated: 2025/04/26 10:02:50 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 
-static void	clear_stack(t_stack *s)
-{
-	int				count;
 
-	if (s)
-	{
-		while (s->head)
-			stack_rem_elmnt(s);
-	}
-	free(s);
-}
-
-static void	*stack_rem_elmnt(t_stack *stack)
+static void	stack_rem_elmnt(t_stack *stack)
 {
 	t_stack_element	*to_fetch;
 
 	if (!stack->head)
-		return (NULL);
+		return ;
 	to_fetch = stack->head;
-	if (stack->stack_length == 1)
+	if (to_fetch == to_fetch->next)
 		stack->head = NULL;
 	else
 	{
@@ -43,6 +32,17 @@ static void	*stack_rem_elmnt(t_stack *stack)
 	stack->stack_length--;
 	free (to_fetch);
 }
+
+static void	clear_stack(t_stack *s)
+{
+	if (s)
+	{
+		while (s->head)
+			stack_rem_elmnt(s);
+	}
+	free(s);
+}
+
 
 void	burnit(int **n, char **s, t_stack **a, t_stack **b)
 {

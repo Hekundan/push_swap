@@ -6,11 +6,11 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:03:16 by johartma          #+#    #+#             */
-/*   Updated: 2024/11/06 17:17:51 by johartma         ###   ########.fr       */
+/*   Updated: 2025/04/26 09:29:52 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	is_whitespace(char c)
+static int	is_whitespace(char c)
 {
 	if (((c >= 9) && (c <= 13)) || (c == 32))
 		return (1);
