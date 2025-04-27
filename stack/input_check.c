@@ -6,7 +6,7 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:33:03 by johartma          #+#    #+#             */
-/*   Updated: 2025/04/26 12:20:05 by johartma         ###   ########.fr       */
+/*   Updated: 2025/04/27 09:19:11 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,15 @@ static long long	ft_atoll(const char *str)
 
 static int	is_overflow(char *s)
 {
-		long long v = ft_atoll(s);
-		if (v < INT_MIN || v > INT_MAX)
-		{
-			ft_printf("Overflow\n");
-			return (1);
-		}
-		return (0);
+	long long	v;
+
+	v = ft_atoll(s);
+	if (v < INT_MIN || v > INT_MAX)
+	{
+		ft_printf("Overflow\n");
+		return (1);
+	}
+	return (0);
 }
 
 static int	is_not_numeric(char *c)

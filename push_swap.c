@@ -6,12 +6,11 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:24:56 by johartma          #+#    #+#             */
-/*   Updated: 2025/04/26 10:11:40 by johartma         ###   ########.fr       */
+/*   Updated: 2025/04/27 20:52:56 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	main(int argc, char **argv)
 {
@@ -24,14 +23,13 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	moves = NULL;
 	numbers = read_to_arr(argc, argv);
-	if (!numbers)
+	if (!numbers
+		|| (build_stacks(&stack_a, &stack_b, numbers, argc - 1) == -1)
+		|| (sort(stack_a, stack_b, &moves) == -1))
 	{
 		burnit(&numbers, &moves, &stack_a, &stack_b);
 		return (-1);
 	}
-	if (build_stacks(stack_a, stack_b, numbers, argc - 1) == -1)
-	{
-		burnit(&numbers, &moves, &stack_a, &stack_b);
-		return (-1);
-	}
+	ft_printf("%s", moves);
+	return (0);
 }
