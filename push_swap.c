@@ -11,6 +11,17 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+void print_sorted(t_stack *stack_a)
+{
+	for (int i = 0; i < (stack_a->stack_length); i++)
+	{
+		printf("%i\n", stack_a->head->nb);
+		stack_a->head = stack_a->head->next;
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -21,7 +32,13 @@ int	main(int argc, char **argv)
 
 	stack_a = NULL;
 	stack_b = NULL;
-	moves = NULL;
+	moves = malloc(1);
+	if (!moves)
+	{
+		burnit(&numbers, &moves, &stack_a, &stack_b);
+		return (-1);
+	}
+	*moves = 0;
 	numbers = read_to_arr(argc, argv);
 	if (!numbers
 		|| (build_stacks(&stack_a, &stack_b, numbers, argc - 1) == -1)
@@ -30,6 +47,8 @@ int	main(int argc, char **argv)
 		burnit(&numbers, &moves, &stack_a, &stack_b);
 		return (-1);
 	}
-	ft_printf("%s", moves);
+	print_sorted(stack_a);
+	//ft_printf("%s", moves);
+	burnit(&numbers, &moves, &stack_a, &stack_b);
 	return (0);
 }

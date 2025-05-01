@@ -24,16 +24,16 @@ static int	swap(t_stack *x, t_stack *y)
 	return (0);
 }
 
-int	pa(char *operations, t_stack *stack_a, t_stack *stack_b)
+int	pa(char **operations, t_stack *stack_a, t_stack *stack_b)
 {
 	if (swap(stack_a, stack_b) == -1)
 		return (-1);
-	return (add_to_operations(&operations, "pa\n"));
+	return (add_to_operations(operations, "pa\n"));
 }
 
-int	pb(char *operations, t_stack *stack_a, t_stack *stack_b)
+int	pb(char **operations, t_stack *stack_a, t_stack *stack_b)
 {
 	if (swap(stack_b, stack_a) == -1)
 		return (-1);
-	return (add_to_operations(&operations, "pb\n"));
+	return (add_to_operations(operations, "pb\n"));
 }

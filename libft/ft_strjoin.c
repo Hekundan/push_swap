@@ -22,11 +22,14 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	result = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!result)
 		return (0);
-	while (*s1)
+	if (s1)
 	{
-		result[count] = *s1;
-		count++;
-		s1++;
+	while (*s1)
+		{
+			result[count] = *s1;
+			count++;
+			s1++;
+		}
 	}
 	while (*s2)
 	{

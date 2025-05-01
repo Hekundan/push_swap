@@ -17,21 +17,21 @@ static void	rotate_back(t_stack *stack)
 	stack->head = stack->head->former;
 }
 
-int	rra(char *operations, t_stack *stack_a)
+int	rra(char **operations, t_stack *stack_a)
 {
 	rotate_back(stack_a);
-	return (add_to_operations(&operations, "rra\n"));
+	return (add_to_operations(operations, "rra\n"));
 }
 
-int	rrb(char *operations, t_stack *stack_b)
+int	rrb(char **operations, t_stack *stack_b)
 {
 	rotate_back(stack_b);
-	return (add_to_operations(&operations, "rrb\n"));
+	return (add_to_operations(operations, "rrb\n"));
 }
 
-int	rrr(char *operations, t_stack *stack_a, t_stack *stack_b)
+int	rrr(char **operations, t_stack *stack_a, t_stack *stack_b)
 {
 	rotate_back(stack_a);
 	rotate_back(stack_b);
-	return (add_to_operations(&operations, "rrr\n"));
+	return (add_to_operations(operations, "rrr\n"));
 }

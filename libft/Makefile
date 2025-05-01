@@ -1,6 +1,6 @@
 CC = cc
 
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -g
 
 SRCS = ft_atoi.c \
 ft_bzero.c \

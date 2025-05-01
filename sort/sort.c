@@ -42,9 +42,9 @@ void	rotate_to(t_stack *s, int idx, char **ops, char stack)
 		while (idx)
 		{
 			if (stack == 'a')
-				ra(*ops, s);
+				ra(ops, s);
 			else
-				rb(*ops, s);
+				rb(ops, s);
 			idx--;
 		}
 	}
@@ -53,9 +53,9 @@ void	rotate_to(t_stack *s, int idx, char **ops, char stack)
 		while (idx < n)
 		{
 			if (stack == 'a')
-				rra(*ops, s);
+				rra(ops, s);
 			else
-				rrb(*ops, s);
+				rrb(ops, s);
 			idx++;
 		}
 	}
@@ -67,7 +67,7 @@ void	move_b_top(t_stack *b, char **op, int idx)
 	{
 		while (idx)
 		{
-			rb(*op, b);
+			rb(op, b);
 			idx--;
 		}
 	}
@@ -75,7 +75,7 @@ void	move_b_top(t_stack *b, char **op, int idx)
 	{
 		while (idx < (b->stack_length))
 		{
-			rrb(*op, b);
+			rrb(op, b);
 			idx++;
 		}
 	}
@@ -88,13 +88,16 @@ static void	push_non_lis(t_stack *a, t_stack *b, char **ops, char *keep)
 
 	n = a->stack_length;
 	count = 0;
-	while (count < n)
+	if(keep)
 	{
-		if (keep[count])
-			ra(*ops, a);
-		else
-			pb(*ops, a, b);
-		count++;
+		while (count < n)
+		{
+			if (keep[count])
+				ra(ops, a);
+			else
+				pb(ops, a, b);
+			count++;
+		}
 	}
 }
 
@@ -102,8 +105,7 @@ int	sort(t_stack *a, t_stack *b, char **ops)
 {
 	char	*keep;
 
-	keep = malloc(a->stack_length);
-	
+	keep = ft_calloc(a->stack_length, 1);
 	if (!keep)
 		return (-1);
 	if (a->stack_length < 2) 

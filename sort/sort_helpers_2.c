@@ -32,7 +32,7 @@ static int	target_pos(t_stack *a, int v)
 	best = INT_MAX;
 	count = 0;
 	current = a -> head;
-	while (count < a->stack_length)
+	while (current != a->head && count < a->stack_length)
 	{
 		if (current->nb > v && current->nb < best)
 		{
@@ -68,6 +68,7 @@ static int	best_idx_b(t_stack *a, t_stack *b)
 			best = count;
 		}
 		current = current->next;
+		count++;
 	}
 	return (best);
 }
@@ -83,7 +84,7 @@ int	min_pos(t_stack *s)
 	best = INT_MAX;
 	current = s->head;
 	count = 0;
-	while (count < s->stack_length)
+	while (count < (s->stack_length))
 	{
 		if (current->nb < best)
 		{
@@ -102,6 +103,6 @@ void	insert_from_b(t_stack *a, t_stack *b, char **op)
 	{
 		move_b_top(b, op, best_idx_b(a, b));
 		rotate_to(a, target_pos(a, b->head->nb), op, 'a');
-		pa(*op, a, b);
+		pa(op, a, b);
 	}
 }

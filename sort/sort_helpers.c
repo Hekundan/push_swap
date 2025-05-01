@@ -39,7 +39,7 @@ static int	init_md_arrays(int ***arrr, int len_arr, int n_arrays)
 		return (-1);
 	while (count < n_arrays)
 	{
-		(*arrr)[count] = malloc(sizeof(int) * len_arr);
+		(*arrr)[count] = ft_calloc(len_arr, sizeof(int));
 		if (!(*arrr)[count])
 		{
 			clear_md_arrays(arrr, count);

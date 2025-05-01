@@ -13,17 +13,19 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
-int	add_to_operations(char **operations, char *to_add)
+int add_to_operations(char **operations, char *to_add)
 {
-	char	*result;
-
-	result = ft_strjoin(*operations, to_add);
-	if (result)
-	{
-		free(*operations);
-		*operations = result;
-		return (0);
-	}
-	else
-		return (-1);
+    if (*operations == NULL)
+        *operations = ft_strdup("");
+    char *result = ft_strjoin(*operations, to_add);
+    if (result)
+    {
+        free(*operations);
+        *operations = result;
+        return (0);
+    }
+    else
+    {
+        return (-1);
+    }
 }
