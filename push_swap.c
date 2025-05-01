@@ -47,8 +47,8 @@ int	main(int argc, char **argv)
 		burnit(&numbers, &moves, &stack_a, &stack_b);
 		return (-1);
 	}
-	print_sorted(stack_a);
-	//ft_printf("%s", moves);
+	//print_sorted(stack_a);
+	ft_printf("%s", moves);
 	burnit(&numbers, &moves, &stack_a, &stack_b);
 	return (0);
 }

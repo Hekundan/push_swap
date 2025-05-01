@@ -24,7 +24,7 @@ void	sort_array_ranks(int **arrs, int stack_len)
 		count[1] = 0;
 		while (count[1] < stack_len)
 		{
-			if (arrs[0][count[1]] > arrs[0][count[0]])
+			if (arrs[0][count[1]] < arrs[0][count[0]])
 				arrs[1][count[0]]++;
 			count[1]++;
 		}
@@ -85,6 +85,7 @@ static void	push_non_lis(t_stack *a, t_stack *b, char **ops, char *keep)
 {
 	int	n;
 	int	count;
+	char first;
 
 	n = a->stack_length;
 	count = 0;
@@ -92,12 +93,15 @@ static void	push_non_lis(t_stack *a, t_stack *b, char **ops, char *keep)
 	{
 		while (count < n)
 		{
-			if (keep[count])
+			first = keep[0];
+			if (first)
 				ra(ops, a);
 			else
 				pb(ops, a, b);
 			count++;
 		}
+		ft_memmove(keep, keep+1, count-1);
+		keep[count - 1] = first;
 	}
 }
 

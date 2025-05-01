@@ -32,7 +32,7 @@ static int	target_pos(t_stack *a, int v)
 	best = INT_MAX;
 	count = 0;
 	current = a -> head;
-	while (current != a->head && count < a->stack_length)
+	while (count < a->stack_length)
 	{
 		if (current->nb > v && current->nb < best)
 		{
