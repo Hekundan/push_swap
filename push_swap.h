@@ -6,7 +6,7 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:21:32 by johartma          #+#    #+#             */
-/*   Updated: 2025/04/27 20:59:02 by johartma         ###   ########.fr       */
+/*   Updated: 2025/05/03 09:59:02 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int				sort(t_stack *a, t_stack *b, char **ops);
 void			move_b_top(t_stack *b, char **op, int idx);
 void			rotate_to(t_stack *s, int idx, char **ops, char stack);
 void			sort_array_ranks(int **arrs, int stack_len);
+int				check_sorted(t_stack *stack);
+
 
 
 #endif
