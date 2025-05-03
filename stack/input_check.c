@@ -54,7 +54,7 @@ static int	is_overflow(char *s)
 	v = ft_atoll(s);
 	if (v < INT_MIN || v > INT_MAX)
 	{
-		ft_printf("Error\n");
+		ft_putstr_fd("Error\n", 2);
 		return (1);
 	}
 	return (0);
@@ -63,12 +63,22 @@ static int	is_overflow(char *s)
 static int	is_not_numeric(char *c)
 {
 	if (!c)
+	{
+		ft_putstr_fd("Error\n", 2);
 		return (-1);
+	}
+	if (*c == '+' || *c == '-')
+		c++;
+	if (!*c)
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (-1);
+	}
 	while (*c)
 	{
 		if (*c < '0' || *c > '9')
 		{
-			ft_printf("Error\n");
+			ft_putstr_fd("Error\n", 2);
 			return (1);
 		}
 		c++;
@@ -85,7 +95,7 @@ static int	is_dup(int i, int *a, int len_a)
 	{
 		if (a[count] == i)
 		{
-			ft_printf("Error");
+			ft_putstr_fd("Error\n", 2);
 			return (1);
 		}
 		count++;

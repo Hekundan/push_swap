@@ -81,29 +81,71 @@ void	move_b_top(t_stack *b, char **op, int idx)
 	}
 }
 
-static void	push_non_lis(t_stack *a, t_stack *b, char **ops, char *keep)
+static void	push_non_lis(t_stack *a,
+	t_stack *b,
+	char   **ops,
+	char    *keep)
 {
-	int	n;
-	int	count;
-	char first;
-
-	n = a->stack_length;
-	count = 0;
-	if(keep)
-	{
-		while (count < n)
-		{
-			first = keep[0];
-			if (first)
-				ra(ops, a);
-			else
-				pb(ops, a, b);
-			count++;
-		}
-		ft_memmove(keep, keep+1, count-1);
-		keep[count - 1] = first;
-	}
+int len = a->stack_length;
+int to_push = len;
+/* count how many we actually need to push */
+for (int i = 0; i < len; i++)
+if (keep[i])
+to_push--;
+/* we’ll be shrinking len each time we pb() */
+while (to_push-- > 0)
+{
+/* 1) find the cheapest non-LIS element in A to bring to top */
+int best_idx  = -1;
+int best_cost = INT_MAX;
+for (int i = 0; i < len; i++)
+{
+if (keep[i] == 0)
+{
+int cost = (i <= len/2 ? i : len - i);
+if (cost < best_cost)
+{
+best_cost = cost;
+best_idx  = i;
 }
+}
+}
+
+/* 2) rotate A the minimal way to move best_idx → 0 */
+if (best_idx <= len/2)
+{
+/* ra best_idx times */
+while (best_idx-- > 0)
+{
+ra(ops, a);
+/* rotate the keep[] window forward by one */
+char first = keep[0];
+ft_memmove(keep, keep + 1, len - 1);
+keep[len - 1] = first;
+}
+}
+else
+{
+int rev = len - best_idx;
+/* rra rev times */
+while (rev-- > 0)
+{
+rra(ops, a);
+/* rotate the keep[] window backward by one */
+char last = keep[len - 1];
+ft_memmove(keep + 1, keep, len - 1);
+keep[0] = last;
+}
+}
+
+/* 3) push it */
+pb(ops, a, b);
+/* drop the first keep-flag, shrinking the window */
+ft_memmove(keep, keep + 1, len - 1);
+len--;
+}
+}
+
 
 int	sort(t_stack *a, t_stack *b, char **ops)
 {

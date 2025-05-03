@@ -67,7 +67,7 @@ static int	get_best(int **arrs, int len)
 				+ 1 > arrs[1][count])
 			{
 				arrs[1][count] = arrs[1][count2] + 1;
-				arrs[2][count2] = count2;
+				arrs[2][count] = count2;
 				best = count;
 			}
 			count2++;
