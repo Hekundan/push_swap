@@ -6,7 +6,7 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 19:52:07 by johartma          #+#    #+#             */
-/*   Updated: 2025/05/07 23:07:08 by johartma         ###   ########.fr       */
+/*   Updated: 2025/05/07 23:38:25 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,30 @@ static int	get_min_offset(t_stack *a, int off)
 {
 	int	count;
 	int	extr;
+	int	best_val;
 
 	count = 0;
 	extr = INT_MAX;
 	while (count < a->stack_length)
 	{
-		if ((get_val_at_pos(a, count) - off) < extr
-			&& (get_val_at_pos(a, count) - off) > 0)
-			extr = get_val_at_pos(a, count);
+		if (((get_val_at_pos(a, count) - off) < extr) &&
+			((get_val_at_pos(a, count) - off) > 0))
+		{
+			extr = get_val_at_pos(a, count) - off;
+			best_val = get_val_at_pos(a, count);
+		}
 		count++;
 	}
-	return (extr);
+	return (best_val);
 }
 
-static int	best_insert_to_a(t_stack *a, t_stack *b, int val)
+static int	best_insert_to_a(t_stack *a, int val)
 {
 	if (val < get_extr(a, 's'))
 		return (get_val_pos(a, get_extr(a, 's')));
 	if (val > get_extr(a, 'l'))
 		return (get_val_pos(a, get_extr(a, 'l')) + 1);
-	return (get_val_pos(a, get_min_offset(a, get_val_pos(b, val))));
+	return (get_val_pos(a, get_min_offset(a, val)));
 }
 
 void	get_best_idx(int *nbs, t_stack *a, t_stack *b)
@@ -100,7 +104,7 @@ void	get_best_idx(int *nbs, t_stack *a, t_stack *b)
 	nbs2[0] = -1;
 	while (nbs2[0]++ < (b->stack_length - 1))
 	{
-		nbs2[1] = best_insert_to_a(a, b, get_val_at_pos(b, nbs2[0]));
+		nbs2[1] = best_insert_to_a(a, get_val_at_pos(b, nbs2[0]));
 		if (nbs2[1] <= (a->stack_length / 2))
 			nbs2[3] = nbs2[1];
 		else
