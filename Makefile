@@ -19,7 +19,8 @@ sort/sort.c \
 moves/push.c \
 moves/rotate_back.c \
 moves/rotate.c \
-moves/swap.c
+moves/swap.c \
+sort/rot_both.c
 
 OBJS_PROGRAMM = $(SRCS_PROGRAMM:.c=.o)
 

@@ -12,7 +12,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/push_swap",
             "args": ["6", "2", "8", "7", "1", "4", "3", "0", "9", "5"],
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,

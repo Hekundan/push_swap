@@ -6,7 +6,7 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 12:21:32 by johartma          #+#    #+#             */
-/*   Updated: 2025/05/03 09:59:02 by johartma         ###   ########.fr       */
+/*   Updated: 2025/05/07 21:49:41 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,14 @@ void			burnit(int **n, char **s, t_stack **a, t_stack **b);
 int				build_stacks(t_stack **a, t_stack **b,
 					int *numbers, int length);
 int				*read_to_arr(int arr_len, char *args[]);
-void			insert_from_b(t_stack *a, t_stack *b, char **op);
-int				min_pos(t_stack *s);
-char			*lis_flag(t_stack *a, char *keep);
+int				insert_from_b(t_stack *a, t_stack *b, char **ops);
+void			lis_flag(t_stack *a, int **keep);
 int				sort_ranks(t_stack *a);
 int				sort(t_stack *a, t_stack *b, char **ops);
 void			move_b_top(t_stack *b, char **op, int idx);
-void			rotate_to(t_stack *s, int idx, char **ops, char stack);
 void			sort_array_ranks(int **arrs, int stack_len);
 int				check_sorted(t_stack *stack);
-
-
+void			rot_both_min_cost(t_stack *a, t_stack *b,
+					int *idxs, char **ops);
 
 #endif

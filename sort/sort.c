@@ -6,7 +6,7 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 12:31:44 by johartma          #+#    #+#             */
-/*   Updated: 2025/05/03 12:02:06 by johartma         ###   ########.fr       */
+/*   Updated: 2025/05/07 21:50:24 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,35 +33,6 @@ void	sort_array_ranks(int **arrs, int stack_len)
 	}
 }
 
-void	rotate_to(t_stack *s, int idx, char **ops, char stack)
-{
-	int	n;
-
-	n = s->stack_length;
-	if (idx <= (n / 2))
-	{
-		while (idx)
-		{
-			if (stack == 'a')
-				ra(ops, s);
-			else
-				rb(ops, s);
-			idx--;
-		}
-	}
-	else
-	{
-		while (idx < n)
-		{
-			if (stack == 'a')
-				rra(ops, s);
-			else
-				rrb(ops, s);
-			idx++;
-		}
-	}
-}
-
 void	move_b_top(t_stack *b, char **op, int idx)
 {
 	if (idx <= (b->stack_length / 2))
@@ -82,37 +53,51 @@ void	move_b_top(t_stack *b, char **op, int idx)
 	}
 }
 
-static void	push_non_lis(t_stack *a, t_stack *b, char **ops, char *keep)
+static void	push_non_lis(t_stack *a, t_stack *b, char **ops, int *keep)
 {
-	int	count;
+	int	i;
+	int	j;
+	int	push;
 	int	len;
 
-	count = 0;
+	i = 0;
+	push = 0;
 	len = a->stack_length;
-	while (count < len)
+	while (i < len)
 	{
-		if (keep[count])
+		j = keep[0];
+		while (0 < j)
+		{
+			if (a->head->nb == keep[j])
+				push = 1;
+			j--;
+		}
+		if (push)
+		{
 			ra(ops, a);
+			push = 0;
+		}
 		else
 			pb(ops, a, b);
-		count++;
+		i++;
 	}
 }
 
 int	sort(t_stack *a, t_stack *b, char **ops)
 {
-	char	*keep;
+	int	*keep;
 
-	keep = ft_calloc(a->stack_length, 1);
+	keep = ft_calloc(1000, sizeof(int));
 	if (!keep)
 		return (-1);
 	if (!((a->stack_length < 2) || check_sorted(a)))
 	{
 		sort_ranks(a);
-		lis_flag(a, keep);
+		lis_flag(a, &keep);
+		if (!keep)
+			return (-1);
 		push_non_lis(a, b, ops, keep);
 		insert_from_b(a, b, ops);
-		rotate_to(a, min_pos(a), ops, 'a');
 	}
 	free(keep);
 	return (0);
