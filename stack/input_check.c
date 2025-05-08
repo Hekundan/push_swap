@@ -6,104 +6,33 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:33:03 by johartma          #+#    #+#             */
-/*   Updated: 2025/04/27 09:19:11 by johartma         ###   ########.fr       */
+/*   Updated: 2025/05/08 20:30:48 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 #include "libft/libft.h"
 #include <stdlib.h>
 #include <limits.h> 
 
-static int	is_whitespace(char c)
-{
-	if (((c >= 9) && (c <= 13)) || (c == 32))
-		return (1);
-	else
-		return (0);
-}
-
-static long long	ft_atoll(const char *str)
-{
-	long long	to_rtrn;
-	int			sign;
-
-	to_rtrn = 0;
-	sign = 1;
-	while (is_whitespace(*str) == 1)
-		str++;
-	if ((*str == '-') || (*str == '+'))
-	{
-		if (*str == '-')
-			sign *= -1;
-		str++;
-	}
-	while ((*str >= '0') && (*str <= '9'))
-	{
-		to_rtrn *= 10;
-		to_rtrn += (*str - '0');
-		str++;
-	}
-	to_rtrn *= sign;
-	return (to_rtrn);
-}
-
-static int	is_overflow(char *s)
-{
-	long long	v;
-
-	v = ft_atoll(s);
-	if (v < INT_MIN || v > INT_MAX)
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (1);
-	}
-	return (0);
-}
-
 static int	is_not_numeric(char *c)
 {
 	if (!c)
-	{
-		ft_putstr_fd("Error\n", 2);
 		return (-1);
-	}
 	if (*c == '+' || *c == '-')
 		c++;
 	if (!*c)
-	{
-		ft_putstr_fd("Error\n", 2);
 		return (-1);
-	}
 	while (*c)
 	{
 		if (*c < '0' || *c > '9')
-		{
-			ft_putstr_fd("Error\n", 2);
 			return (1);
-		}
 		c++;
 	}
 	return (0);
 }
 
-static int	is_dup(int i, int *a, int len_a)
-{
-	int	count;
-
-	count = 0;
-	while (count < len_a)
-	{
-		if (a[count] == i)
-		{
-			ft_putstr_fd("Error\n", 2);
-			return (1);
-		}
-		count++;
-	}
-	return (0);
-}
-
-int	*read_to_arr(int arr_len, char *args[])
+int	*read_separate(int arr_len, char *args[])
 {
 	int		count;
 	int		*a;
@@ -113,17 +42,72 @@ int	*read_to_arr(int arr_len, char *args[])
 	a = malloc(sizeof(int) * arr_len);
 	if (!a)
 		return (NULL);
-	while (count < arr_len)
+	while (count < arr_len + 1)
 	{
 		num = ft_atoi(args[count]);
-		if (is_not_numeric(args[count]) || is_dup(num, a, count - 1) ||
-			is_overflow(args[count]))
+		if (is_not_numeric(args[count]) || is_dup(num, a, count - 1)
+			|| is_overflow(args[count]))
 		{
 			free(a);
 			return (NULL);
 		}
-		a[count-1] = num;
+		a[count - 1] = num;
 		count++;
 	}
 	return (a);
+}
+
+static void	free_split(char **arr_strs, size_t words_allocated)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < words_allocated)
+	{
+		free(arr_strs[i]);
+		i++;
+	}
+	if (arr_strs)
+		free(arr_strs);
+}
+
+int	*read_combined(int *arr_len, char *arg)
+{
+	char	**splited;
+	int		count;
+	int		*a;
+	int		num;
+
+	count = 0;
+	splited = ft_split(arg, ' ');
+	*arr_len = 0;
+	while (splited && splited[*arr_len])
+		(*arr_len)++;
+	a = malloc(sizeof(int) * *arr_len);
+	while (a && count < *arr_len)
+	{
+		num = ft_atoi(splited[count]);
+		if (is_not_numeric(splited[count]) || is_dup(num, a, count)
+			|| is_overflow(splited[count]))
+			break ;
+		a[count++] = num;
+	}
+	free_split(splited, *arr_len);
+	if ((count == (*arr_len)++ && count > 0) || !a)
+		return (a);
+	free(a);
+	return (NULL);
+}
+
+int	*read_to_arr(int *argc, char *argv[])
+{
+	int	arr_len;
+
+	arr_len = *argc - 1;
+	if (arr_len < 1)
+		return (NULL);
+	if (*argc == 2)
+		return (read_combined(argc, argv[1]));
+	else
+		return (read_separate(arr_len, argv));
 }

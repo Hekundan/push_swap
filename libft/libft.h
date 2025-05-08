@@ -6,7 +6,7 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:17:50 by johartma          #+#    #+#             */
-/*   Updated: 2025/04/16 12:17:44 by johartma         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:54:50 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <stdint.h>
 # include <sys/types.h>
-
 
 int				ft_printf(const char *fmt, ...);
 int				ft_printf_c(const char c);
@@ -72,7 +71,6 @@ void			ft_copy(const char *src, char *dest, size_t start, size_t len);
 ssize_t			read_to_buf(int fd, char **buffer);
 size_t			get_len(char *c);
 size_t			get_buf_len(char *c);
-
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42

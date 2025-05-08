@@ -6,13 +6,12 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 10:49:32 by johartma          #+#    #+#             */
-/*   Updated: 2025/04/26 10:02:50 by johartma         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:59:27 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
-
 
 static void	stack_rem_elmnt(t_stack *stack)
 {
@@ -43,7 +42,6 @@ static void	clear_stack(t_stack *s)
 	free(s);
 }
 
-
 void	burnit(int **n, char **s, t_stack **a, t_stack **b)
 {
 	if (*a)
@@ -55,4 +53,3 @@ void	burnit(int **n, char **s, t_stack **a, t_stack **b)
 	if (*n)
 		free(*n);
 }
-

@@ -1,6 +1,6 @@
 CC = cc
 
-CFLAGS = -Wall -Wextra -g
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS = ft_atoi.c \
 ft_bzero.c \
@@ -28,6 +28,7 @@ ft_strlcpy.c \
 ft_strlen.c \
 ft_strmapi.c \
 ft_strncmp.c \
+ft_split.c \
 ft_strnstr.c \
 ft_strrchr.c \
 ft_strtrim.c \
@@ -60,6 +61,6 @@ clean:
 	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(EXE)
+	rm -f $(OUTPUT)
 
 re: fclean all

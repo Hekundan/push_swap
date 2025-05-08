@@ -6,7 +6,7 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:52:29 by johartma          #+#    #+#             */
-/*   Updated: 2025/05/03 10:20:20 by johartma         ###   ########.fr       */
+/*   Updated: 2025/05/08 20:10:18 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,16 @@ int	check_sorted(t_stack *stack)
 	return (1);
 }
 
+int	is_dup(int i, int *a, int len_a)
+{
+	int	count;
+
+	count = 0;
+	while (count < len_a)
+	{
+		if (a[count] == i)
+			return (1);
+		count++;
+	}
+	return (0);
+}

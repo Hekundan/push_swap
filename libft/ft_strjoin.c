@@ -6,7 +6,7 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:36:22 by johartma          #+#    #+#             */
-/*   Updated: 2024/11/27 15:40:28 by johartma         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:00:32 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	if (s1)
 	{
-	while (*s1)
+		while (*s1)
 		{
 			result[count] = *s1;
 			count++;

@@ -6,7 +6,7 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 12:31:44 by johartma          #+#    #+#             */
-/*   Updated: 2025/05/07 21:50:24 by johartma         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:47:36 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ static void	push_non_lis(t_stack *a, t_stack *b, char **ops, int *keep)
 	int	push;
 	int	len;
 
-	i = 0;
+	i = -1;
 	push = 0;
 	len = a->stack_length;
-	while (i < len)
+	while (i++ < (len - 1))
 	{
 		j = keep[0];
 		while (0 < j)
@@ -79,7 +79,6 @@ static void	push_non_lis(t_stack *a, t_stack *b, char **ops, int *keep)
 		}
 		else
 			pb(ops, a, b);
-		i++;
 	}
 }
 
@@ -96,7 +95,8 @@ int	sort(t_stack *a, t_stack *b, char **ops)
 		lis_flag(a, &keep);
 		if (!keep)
 			return (-1);
-		push_non_lis(a, b, ops, keep);
+		if (keep[0] != a->stack_length)
+			push_non_lis(a, b, ops, keep);
 		insert_from_b(a, b, ops);
 	}
 	free(keep);

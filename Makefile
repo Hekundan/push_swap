@@ -1,7 +1,7 @@
 NAME_PROGRAMM = push_swap
 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g
+CFLAGS      = -Wall -Wextra -Werror
 
 LIBFT_PATH  = libft/
 LIBFT       = $(LIBFT_PATH)libft.a
@@ -10,6 +10,7 @@ INCLUDES    = -I. -I$(LIBFT_PATH)
 SRCS_PROGRAMM = push_swap.c \
 stack/tools.c \
 stack/stack.c \
+stack/checkers.c \
 stack/input_check.c \
 stack/init_stacks.c \
 stack/cleanup.c \
@@ -20,7 +21,9 @@ moves/push.c \
 moves/rotate_back.c \
 moves/rotate.c \
 moves/swap.c \
-sort/rot_both.c
+sort/rot_both.c \
+sort/lis.c \
+sort/positions.c
 
 OBJS_PROGRAMM = $(SRCS_PROGRAMM:.c=.o)
 

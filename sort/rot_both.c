@@ -6,7 +6,7 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:49:52 by johartma          #+#    #+#             */
-/*   Updated: 2025/05/07 23:56:57 by johartma         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:20:48 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	rot_both_bkwd(t_stack *a, t_stack *b, int *idxs, char **ops)
 		rra(ops, a);
 		idxs[3]--;
 	}
-	while (idxs[2] <= 0)
+	while (idxs[2] > 0)
 	{
 		rrb(ops, b);
 		idxs[2]--;
@@ -95,13 +95,13 @@ static void	rot_b_ind(t_stack *b, int *idxs, char **ops)
 void	rot_both_min_cost(t_stack *a, t_stack *b, int *idxs, char **ops)
 {
 	idxs++;
-	idxs[2]= a->stack_length - idxs[0];
-	idxs[3] = b->stack_length - idxs[1];
-	if (idxs[0] <= (a->stack_length / 2)
-		&& idxs[1] <= (b->stack_length / 2))
+	idxs[3] = a->stack_length - idxs[1];
+	idxs[2] = b->stack_length - idxs[0];
+	if (idxs[1] <= (a->stack_length / 2)
+		&& idxs[0] <= (b->stack_length / 2))
 		rot_both_fwd(a, b, idxs, ops);
-	else if (idxs[2] <= (a->stack_length / 2)
-		&& idxs[3] <= (b->stack_length / 2))
+	else if (idxs[3] <= (a->stack_length / 2)
+		&& idxs[2] <= (b->stack_length / 2))
 		rot_both_bkwd(a, b, idxs, ops);
 	else
 	{

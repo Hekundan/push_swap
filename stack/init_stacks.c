@@ -6,7 +6,7 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:24:24 by johartma          #+#    #+#             */
-/*   Updated: 2025/04/26 11:07:12 by johartma         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:56:27 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static int	alloc_stacks(t_stack **a, t_stack **b)
 	*b = malloc(sizeof(**b));
 	if (!*a || !*b)
 		return (-1);
-
 	(*a)->head = NULL;
 	(*a)->stack_length = 0;
 	(*b)->head = NULL;

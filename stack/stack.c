@@ -6,7 +6,7 @@
 /*   By: johartma <johartma@student.42.de>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:31:08 by johartma          #+#    #+#             */
-/*   Updated: 2025/04/25 11:24:55 by johartma         ###   ########.fr       */
+/*   Updated: 2025/05/08 16:59:03 by johartma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,3 @@ t_stack_element	*stack_fetch(t_stack *stack)
 	stack->stack_length--;
 	return (to_fetch);
 }
-
-
